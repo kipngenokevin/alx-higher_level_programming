@@ -29,13 +29,13 @@ int main(void)
 		printf("Linked list has no cycle\n");
 	else if (check_cycle(head) == 1)
 		printf("Linked list has a cycle\n");
-	
+
 	current = head;
 	for (i = 0; i < 4; i++)
 		current = current->next;
 	temp = current->next;
 	current->next = head;
-	if(check_cycle(head) == 0)
+	if (check_cycle(head) == 0)
 		printf("Linked list has no cycle\n");
 	else if (check_cycle(head) == 1)
 		printf("Linked list has a cycle\n");
