@@ -3,6 +3,8 @@ def print_matrix_integer(matrix=[[]]):
     if matrix is not None:
         for row in matrix:
             i = 0
+            if not row:
+                print()
             for item in row:
                 if i < len(row) - 1:
                     print("{:d}".format(item), end=" ")
