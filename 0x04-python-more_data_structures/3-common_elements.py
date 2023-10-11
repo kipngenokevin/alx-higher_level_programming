@@ -1,5 +1,7 @@
 def common_elements(set_1, set_2):
-    a = set(set_1)
-    b = set(set_2)
-    c = (a & b)
-    return c
+    common_set = set()
+    for item in set_1:
+        for element in set_2:
+            if item == element:
+                common_set.add(element)
+    return common_set
