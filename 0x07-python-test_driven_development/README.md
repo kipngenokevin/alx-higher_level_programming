@@ -10,5 +10,5 @@ Concepts covered in this project:
 
 Links:
 <a href="https://mattermost.com/blog/testing-python-understanding-doctest-and-unittest/#:~:text=Performing%20tests%20using%20the%20unittest,it%20in%20the%20code's%20docstrings." target="_blank"> Testing In Python </a>
-<img src="https://images.pexels.com/photos/5935788/pexels-photo-5935788.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" height = "200px" border="2px" />
+<img src="https://images.pexels.com/photos/1181586/pexels-photo-1181586.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" height = "400px" border="2px" />
 
