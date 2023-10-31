@@ -1,7 +1,7 @@
 This is doctest for 0-add-integer method.
 First, let's import the module
 
->>> from 0-add_integer import add_integer
+>>> add_integer = __import__('0-add_integer').add_integer
 >>> add_integer(2, 5)
 7
 >>> add_integer(2.0, 5.0)
@@ -17,7 +17,10 @@ TypeError: a must be an integer
 >>> add_integer(5, 'b')
 Traceback (most recent call last):
 	...
-TypeError: a must be an integer
+TypeError: b must be an integer
 >>> add_integer(2)
 100
 >>> add_integer()
+Traceback (most recent call last):
+	...
+TypeError: add_integer() missing 1 required positional argument: 'a'
