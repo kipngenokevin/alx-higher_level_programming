@@ -11,3 +11,7 @@ my_rectangle.height = 3
 print("Area: {} - Perimeter: {}".format(my_rectangle.area(), my_rectangle.perimeter()))
 myrectangle = Rectangle(10) 
 print("{} - {} => {} / {}".format(myrectangle.width, myrectangle.height, myrectangle.area(), my_rectangle.perimeter()))
+print("--")
+
+Rectangle(2, 4) 
+print(str(myrectangle))
