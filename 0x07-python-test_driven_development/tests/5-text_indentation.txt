@@ -1,0 +1,25 @@
+This is a doctest for 5-text_indentation module
+Here are the tests.
+
+>>> text_indentation = __import__('5-text_indentation').text_indentation
+>>> text_indentation("""Lorem ipsum dolor sit amet, consectetur adipiscing elit. \
+... Quonam modo? Utrum igitur tibi litteram videor an totas paginas commovere?""")
+Lorem ipsum dolor sit amet, consectetur adipiscing elit
+<BLANKLINE>
+Quonam modo
+<BLANKLINE>
+Utrum igitur tibi litteram videor an totas paginas commovere
+<BLANKLINE>
+>>> text_indentation('Through the wire. Kanye West.')
+Through the wire
+<BLANKLINE>
+Kanye West
+<BLANKLINE>
+>>> text_indentation(124)
+Traceback (most recent call last):
+	...
+TypeError: text must be a string
+>>> text_indentation( )
+Traceback (most recent call last):
+	...
+TypeError: text_indentation() missing 1 required positional argument: 'text'
