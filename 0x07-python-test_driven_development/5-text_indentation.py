@@ -13,7 +13,7 @@ def text_indentation(text):
         raise TypeError('text must be a string')
     in_new_line = True
     for t in text:
-        if t == '.' or t == '?' or t == ':':
+        if t in '.?:':
             in_new_line = True
             print(t)
             print()
