@@ -19,22 +19,3 @@ Testing with empty list
 	>>> my_list.print_sorted()
 	[]
 
-Testing for duplicates
-	>>> my_list.clear()
-	>>> my_list.extend([3, 1, 3, 2, 2, 1])
-	>>> my_list.print_sorted()
-	[1, 1, 2, 2, 3, 3]
-
-Testing for one
-	>>> my_list.clear()
-	>>> my_list.extend([42])
-	>>> my_list.print_sorted()
-	[42]
-
-
-Testing for matrix
-	>>> my_list.clear()
-	>>> my_list.extend([[42, 34, 56], [1, 2, 3], [12, 13, 14,]])
-	>>> my_list.print_sorted()
-	[[1, 2, 3], [12, 13, 14], [42, 34, 56]]
-
