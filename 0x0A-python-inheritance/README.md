@@ -58,3 +58,145 @@ def lookup(obj):
     """
     return dir(obj)
 ```
+
+## Class MyList that inherits from list
+* Public instance method: `def print_sorted(self):` that prints the list, but sorted (ascending sort)
+* You can assume that all the elements of the list will be of type `int`
+
+**1-my_list.py**
+```
+#!/usr/bin/python3
+""" This module with class MyList that inherits from list"""
+
+
+class MyList(list):
+    """ def print_sorted(self):
+    that prints the list, but sorted (ascending sort)
+    """
+    def print_sorted(self):
+        """ prints the list, but sorted (ascending sort)
+        all the elements of the list will be of type int
+        """
+        sorted_list = sorted(self)
+        print(sorted_list)
+```
+
+The test cases - researched.
+
+```
+The ``1-my_list`` module
+============================
+
+Using ``1-mylist``
+---------------------
+
+Import function from module:
+    >>> MyList = __import__('1-my_list').MyList
+
+Correct Class Type test:
+    >>> ml = MyList()
+    >>> type(ml) == MyList
+    True
+
+Correct Instance test:
+    >>> ml = MyList()
+    >>> isinstance(ml, list)
+    True
+
+print_sorted method is an instance method:
+    >>> type(MyList.__dict__['print_sorted'])
+    <class 'function'>
+
+print_sorted method called via class with no args:
+    >>> ml.__class__.print_sorted()
+    Traceback (most recent call last):
+    TypeError: print_sorted() missing 1 required positional argument: 'self'
+
+print_sorted method called with 1 arg:
+    >>> ml.print_sorted([4, 2, 5])
+    Traceback (most recent call last):
+    TypeError: print_sorted() takes 1 positional argument but 2 were given
+
+print_sorted method called with 2 args:
+    >>> ml.print_sorted([4, 2, 5], 1)
+    Traceback (most recent call last):
+    TypeError: print_sorted() takes 1 positional argument but 3 were given
+
+Empty list test:
+    >>> ml = MyList()
+    >>> ml.print_sorted()
+    []
+
+Normal list test:
+    >>> ml = MyList([2, 10, 1])
+    >>> ml.print_sorted()
+    [1, 2, 10]
+
+Normal list test 2:
+    >>> ml = MyList([1, 4, 2, 3, 5])
+    >>> ml.print_sorted()
+    [1, 2, 3, 4, 5]
+
+Negative ints list test:
+    >>> ml = MyList([-1000, -98, -232565, 0, -23423434, -123])
+    >>> ml.print_sorted()
+    [-23423434, -232565, -1000, -123, -98, 0]
+
+Original list unchanged:
+    >>> ml = MyList([2, 10, 1, -10, 20, 100, 0])
+    >>> ml.print_sorted()
+    [-10, 0, 1, 2, 10, 20, 100]
+    >>> ml
+    [2, 10, 1, -10, 20, 100, 0]
+
+List already in order:
+    >>> ml = MyList([-10, 0, 1, 2, 10, 20, 100])
+    >>> ml.print_sorted()
+    [-10, 0, 1, 2, 10, 20, 100]
+
+Test append:
+    >>> ml = MyList()
+    >>> ml.append(10)
+    >>> ml
+    [10]
+```
+
+## Function that returns True if the object is exactly an instance of the specified class
+* Prototype: `def is_same_class(obj, a_class):`
+**2-is_same_class.py**
+```
+#!/usr/bin/python3
+""" module with function that
+returns True of false depending on whether
+an object is the instance of the class
+"""
+
+
+def is_same_class(obj, a_class):
+    """ returns True if the object is exactly
+    an instance of the specified class  otherwise, false
+    """
+    return type(obj) == a_class
+```
+
+***No Test Cases Needed***
+
+Using `isinstance` is more versatile because it also considers subclasses. If you want to check whether an object is an instance of a specific class or any of its subclasses.
+
+## Function that returns True if the object is an instance of...
+function that returns True if the object is an instance of, or if the object is an instance of a class that inherited from, the specified class ; otherwise False.
+* Prototype: `def is_kind_of_class(obj, a_class):`
+
+**3-is_kind_of_class.py**
+```
+#!/usr/bin/python3
+"""This module demonstrates the use of isinstance"""
+
+
+def is_kind_of_class(obj, a_class):
+    """returns True if the object is an instance of, or if the objec
+    is an instance of a class that inherited from, the specified class
+    otherwise False.
+    """
+    return isinstance(obj, a_class)
+```
