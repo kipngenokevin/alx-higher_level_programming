@@ -16,6 +16,8 @@ Testing for negative integers
 
 Testing with large integers
 	>>> my_list.clear()
-	>>> my_list.extend([(2**100), (34**50), (60**10)])
+	>>> my_list.extend([1, 2, 4, 'a'])
 	>>> my_list.print_sorted()
-	[604661760000000000, 1267650600228229401496703205376, 37492625348170371777370847524933279225453074113982960068676870198800863461376]
+	Traceback (most recent call last):
+		...
+	TypeError: '<' not supported between instances of 'str' and 'int'
