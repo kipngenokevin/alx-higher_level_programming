@@ -220,3 +220,10 @@ def inherits_from(obj, a_class):
     """
     return issubclass(type(obj), a_class) and type(obj) is not a_class
 ```
+
+## An empty class BaseGeometry
+**5-base_geometry.py**
+```
+class BaseGeometry:
+    pass
+```
