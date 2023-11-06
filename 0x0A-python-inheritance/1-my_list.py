@@ -11,11 +11,4 @@ class MyList(list):
         all the elements of the list will be of type int
         """
         sorted_list = sorted(self)
-        print('[', end='')
-        for i, item in enumerate(sorted_list):
-            if i == len(sorted_list) - 1:
-                end = ''
-            else:
-                end = ', '
-            print(item, end=end)
-        print(']')
+        print(sorted_list)
