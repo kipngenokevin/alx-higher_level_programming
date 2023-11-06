@@ -1,4 +1,11 @@
 # 0x0A. Python - Inheritance
+Inheritance is a mechanism that allows you to create a hierarchy of classes that share a set of properties and methods by deriving a class from another class. Inheritance is the capability of one class to derive or inherit the properties from another class. 
+
+## Resources
+* [Inheritance](https://docs.python.org/3/tutorial/classes.html#inheritance)
+* [Multiple Inheritance](https://docs.python.org/3/tutorial/classes.html#multiple-inheritance)
+* [Inheritance in Python](https://www.geeksforgeeks.org/inheritance-in-python/)
+* [Learn to Program 10 : Inheritance Magic Methods](https://www.youtube.com/watch?v=d8kCdLCi6Lk)
 
 ## Learning objectives
 * Why Python programming is awesome
