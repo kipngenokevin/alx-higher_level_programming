@@ -178,3 +178,33 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r.height, 30)
         self.assertEqual(r.x, 40)
         self.assertEqual(r.y, 50)
+
+    def test_update_with_kwargs(self):
+        """Test updating attributes with **kwargs"""
+        r = Rectangle(1, 2, 3, 4, 5)
+        r.update(width=20, height=30, x=40, y=50)
+        self.assertEqual(r.id, 5)  # id remains unchanged
+        self.assertEqual(r.width, 20)
+        self.assertEqual(r.height, 30)
+        self.assertEqual(r.x, 40)
+        self.assertEqual(r.y, 50)
+
+    def test_update_with_args_and_kwargs(self):
+        """Test updating attributes with both *args and **kwargs"""
+        r = Rectangle(1, 2, 3, 4, 5)
+        r.update(10, width=20, height=30, x=40, y=50)
+        self.assertEqual(r.id, 10)
+        self.assertEqual(r.width, 20)
+        self.assertEqual(r.height, 30)
+        self.assertEqual(r.x, 40)
+        self.assertEqual(r.y, 50)
+
+    def test_update_extra_kwargs_ignored(self):
+        """Test updating with extra **kwargs that are not attributes"""
+        r = Rectangle(1, 2, 3, 4, 5)
+        r.update(extra_attribute=100)
+        self.assertEqual(r.id, 5)  # id remains unchanged
+        self.assertEqual(r.width, 1)  # width remains unchanged
+        self.assertEqual(r.height, 2)  # height remains unchanged
+        self.assertEqual(r.x, 3)  # x remains unchanged
+        self.assertEqual(r.y, 4)  # y remains unchanged
