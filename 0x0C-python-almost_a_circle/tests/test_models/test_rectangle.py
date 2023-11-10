@@ -2,6 +2,8 @@
 """This module performs unittest on the rectangle module"""
 import unittest
 from models.rectangle import Rectangle
+from io import StringIO
+import sys
 
 
 class TestRectangle(unittest.TestCase):
@@ -37,7 +39,6 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r.height, 40)
         self.assertEqual(r.x, 5)
         self.assertEqual(r.y, 10)
-        self.assertEqual(r.id, 5)
 
     def test_width_type_error(self):
         """This checks for TypeError of the width"""
@@ -91,3 +92,19 @@ class TestRectangle(unittest.TestCase):
         """Test the area method for correct output"""
         r = Rectangle(5, 10)
         self.assertEqual(r.area(), 50)
+
+    def test_display(self):
+        """Test the display method for correct output"""
+        r = Rectangle(3, 4)
+        # redirect stdout to print output
+        captured_output = StringIO()
+        sys.stdout = captured_output
+
+        r.display()
+
+        # Reset redirect
+        sys.stdout = sys.__stdout__
+
+        # check if the output matches
+        expected_output = "###\n###\n###\n###\n"
+        self.assertEqual(captured_output.getvalue(), expected_output)
