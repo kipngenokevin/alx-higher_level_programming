@@ -46,19 +46,43 @@ class Rectangle(Base):
     @width.setter
     def width(self, width):
         """Sets the value of width"""
-        self.__width = width
+        if not isinstance(width, int):
+            raise TypeError("width must be an integer")
+        elif width <= 0:
+            raise ValueError("width must be > 0")
+        else:
+            self.__width = width
 
     @height.setter
     def height(self, height):
         """Sets the value of height"""
-        self.__height = height
+        if not isinstance(height, int):
+            raise TypeError("height must be an integer")
+        elif height <= 0:
+            raise ValueError("height must be > 0")
+        else:
+            self.__height = height
 
     @x.setter
     def x(self, x):
         """Sets the value of x"""
-        self.__x = x
+        if not isinstance(x, int):
+            raise TypeError("x must be an integer")
+        elif x < 0:
+            raise ValueError("x must be >= 0")
+        else:
+            self.__x = x
 
     @y.setter
     def y(self, y):
         """Sets the value of y"""
-        self.__y = y
+        if not isinstance(y, int):
+            raise TypeError("y must be an integer")
+        elif y < 0:
+            raise ValueError("y must be >= 0")
+        else:
+            self.__y = y
+
+    def area(self):
+        """returns the area value of the Rectangle"""
+        return self.__width * self.__height
