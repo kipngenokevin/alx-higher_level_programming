@@ -138,3 +138,43 @@ class TestRectangle(unittest.TestCase):
         # Check if output matches expected output
         expected_output = "[Rectangle] (12) 1/2 - 3/4\n"
         self.assertEqual(captured_output.getvalue(), expected_output)
+
+    def test_update_all_attributes(self):
+        """Test updating all attributes at once"""
+        r = Rectangle(1, 2, 3, 4, 5)
+        r.update(10, 20, 30, 40, 50)
+        self.assertEqual(r.id, 10)
+        self.assertEqual(r.width, 20)
+        self.assertEqual(r.height, 30)
+        self.assertEqual(r.x, 40)
+        self.assertEqual(r.y, 50)
+
+    def test_update_partial_attributes(self):
+        """Test updating only some attributes"""
+        r = Rectangle(1, 2, 3, 4, 5)
+        r.update(10, 20, 30)
+        self.assertEqual(r.id, 10)
+        self.assertEqual(r.width, 20)
+        self.assertEqual(r.height, 30)
+        self.assertEqual(r.x, 3)  # x remains unchanged
+        self.assertEqual(r.y, 4)  # y remains unchanged
+
+    def test_update_no_attributes(self):
+        """Test updating with no arguments"""
+        r = Rectangle(1, 2, 3, 4, 5)
+        r.update()
+        self.assertEqual(r.id, 5)
+        self.assertEqual(r.width, 1)
+        self.assertEqual(r.height, 2)
+        self.assertEqual(r.x, 3)
+        self.assertEqual(r.y, 4)
+
+    def test_update_too_many_attributes(self):
+        """Test updating with more arguments than attributes"""
+        r = Rectangle(1, 2, 3, 4, 5)
+        r.update(10, 20, 30, 40, 50, 60)  # 60 will be ignored
+        self.assertEqual(r.id, 10)
+        self.assertEqual(r.width, 20)
+        self.assertEqual(r.height, 30)
+        self.assertEqual(r.x, 40)
+        self.assertEqual(r.y, 50)
