@@ -108,3 +108,20 @@ class TestRectangle(unittest.TestCase):
         # check if the output matches
         expected_output = "###\n###\n###\n###\n"
         self.assertEqual(captured_output.getvalue(), expected_output)
+
+    def test_str(self):
+        """Test the __str__ function outputs correctly"""
+        r = Rectangle(3, 4, 1, 2, 12)
+
+        # Redirect to print to the output
+        captured_output = StringIO()
+        sys.stdout = captured_output
+
+        print(r)
+
+        # Reset redirect
+        sys.stdout = sys.__stdout__
+
+        # Check if output matches expected output
+        expected_output = "[Rectangle] (12) 1/2 - 3/4\n"
+        self.assertEqual(captured_output.getvalue(), expected_output)
