@@ -91,7 +91,11 @@ class Rectangle(Base):
         """prints in stdout the Rectangle
         with the character #
         """
+        for y_offset in range(self.__y):
+            print()
         for h in range(self.__height):
+            for x_offset in range(self.__x):
+                print(' ', end="")
             for w in range(self.__width):
                 print('#', end="")
             print()

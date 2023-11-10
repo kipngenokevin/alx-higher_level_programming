@@ -109,6 +109,19 @@ class TestRectangle(unittest.TestCase):
         expected_output = "###\n###\n###\n###\n"
         self.assertEqual(captured_output.getvalue(), expected_output)
 
+        # New rectangle with x and y variables
+        p = Rectangle(3, 4, 1, 2)
+        # redirect to print to stdout
+        captured_output = StringIO()
+        sys.stdout = captured_output
+
+        p.display()
+        # Reset redirect
+        sys.stdout = sys.__stdout__
+        # check if the output matches
+        expected_output = '\n\n ###\n ###\n ###\n ###\n'
+        self.assertEqual(captured_output.getvalue(), expected_output)
+
     def test_str(self):
         """Test the __str__ function outputs correctly"""
         r = Rectangle(3, 4, 1, 2, 12)
