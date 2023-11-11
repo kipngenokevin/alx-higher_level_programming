@@ -23,7 +23,7 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(s.height, 5)
         self.assertEqual(s.x, 0)
         self.assertEqual(s.y, 0)
-    
+
     def test_str(self):
         """Test the __str__ function outputs correctly"""
         s = Square(4, 1, 2, 3)
@@ -53,3 +53,33 @@ class TestSquare(unittest.TestCase):
         # Try to set size to a non-positive value, should raise a ValueError
         with self.assertRaises(ValueError):
             square.size = 0
+
+    def test_update_with_args(self):
+        """This tests the update method with args"""
+        square = Square(5, 1, 2, 3)
+        square.update(10, 20, 30, 40)
+
+        self.assertEqual(square.id, 10)
+        self.assertEqual(square.size, 20)
+        self.assertEqual(square.x, 30)
+        self.assertEqual(square.y, 40)
+
+    def test_update_with_kwargs(self):
+        """This test checks the update method with kwargs"""
+        square = Square(5, 1, 2, 3)
+        square.update(id=50, size=20, x=30, y=40)
+
+        self.assertEqual(square.id, 50)
+        self.assertEqual(square.size, 20)
+        self.assertEqual(square.x, 30)
+        self.assertEqual(square.y, 40)
+
+    def test_update_with_args_and_kwargs(self):
+        """This checks the update method with both args and kwargs"""
+        square = Square(5, 1, 2, 3)
+        square.update(10, 20, id=50, size=60)
+
+        self.assertEqual(square.id, 10)
+        self.assertEqual(square.size, 20)
+        self.assertEqual(square.x, 1)
+        self.assertEqual(square.y, 2)
