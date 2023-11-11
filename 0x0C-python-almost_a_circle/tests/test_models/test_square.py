@@ -29,3 +29,27 @@ class TestSquare(unittest.TestCase):
         s = Square(4, 1, 2, 3)
         expected_output = "[Square] (3) 1/2 - 4"
         self.assertEqual(str(s), expected_output)
+
+    def test_size_getter(self):
+        """This test the getter method in square"""
+        s = Square(5)
+        self.assertEqual(s.size, 5)
+
+    def test_size_setter(self):
+        """This test the setter method in square"""
+        square = Square(5)
+        square.size = 10
+        self.assertEqual(square.size, 10)
+        self.assertEqual(square.width, 10)
+        self.assertEqual(square.height, 10)
+
+    def test_size_setter_with_validation(self):
+        """Tests the getter and setter with validation"""
+        square = Square(5)
+        # Try to set size to a non-integer value, should raise a TypeError
+        with self.assertRaises(TypeError):
+            square.size = "invalid"
+
+        # Try to set size to a non-positive value, should raise a ValueError
+        with self.assertRaises(ValueError):
+            square.size = 0
