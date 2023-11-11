@@ -194,10 +194,10 @@ class TestRectangle(unittest.TestCase):
         r = Rectangle(1, 2, 3, 4, 5)
         r.update(10, width=20, height=30, x=40, y=50)
         self.assertEqual(r.id, 10)
-        self.assertEqual(r.width, 20)
-        self.assertEqual(r.height, 30)
-        self.assertEqual(r.x, 40)
-        self.assertEqual(r.y, 50)
+        self.assertEqual(r.width, 1)
+        self.assertEqual(r.height, 2)
+        self.assertEqual(r.x, 3)
+        self.assertEqual(r.y, 4)
 
     def test_update_extra_kwargs_ignored(self):
         """Test updating with extra **kwargs that are not attributes"""
