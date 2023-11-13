@@ -19,6 +19,28 @@ class TestBaseClass(unittest.TestCase):
         """ Tear down resources after use """
         pass
 
+    @classmethod
+    def setUpClass(cls):
+        """# Create a temporary file with some data"""
+        cls.temp_file = "Rectangle.json"
+        data = (
+                '[{"id": 1, "width": 3, "height": 4, "x": 0, "y": 0}, '
+                '{"id": 2, "width": 5, "height": 6, "x": 0, "y": 0}]')
+        with open(cls.temp_file, 'w', encoding='utf-8') as file:
+            file.write(data)
+
+        cls.temp_file_square = "Square.json"
+        data_square =(
+                '[{"id": 3, "size": 2, "x": 1, "y": 1}, '
+                '{"id": 4, "size": 4, "x": 2, "y": 2}]')
+        with open(cls.temp_file_square, 'w', encoding='utf-8') as file_square:
+            file_square.write(data_square)
+
+    @classmethod
+    def tearDownClass(cls):
+        """Remove the temporary file"""
+        os.remove(cls.temp_file)
+
     def test_constructor_no_id(self):
         """Test constructor when no id is provided"""
         b = Base()
@@ -111,3 +133,18 @@ class TestBaseClass(unittest.TestCase):
 
         with self.assertRaises(TypeError):
             Base.create(**invalid_dict)
+
+    def test_load_from_file(self):
+        """Test loading instances from the temporary file"""
+        instances = Rectangle.load_from_file()
+        self.assertEqual(len(instances), 2)
+        self.assertIsInstance(instances[0], Rectangle)
+        self.assertIsInstance(instances[1], Rectangle)
+        self.assertEqual(instances[0].width, 3)
+        self.assertEqual(instances[1].height, 6)
+
+    def test_load_from_file_nonexistent_file(self):
+        """Test loading from a nonexistent file"""
+        os.remove("Square.json")
+        instances = Square.load_from_file()
+        self.assertEqual(len(instances), 0)
