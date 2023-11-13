@@ -30,7 +30,7 @@ class TestBaseClass(unittest.TestCase):
             file.write(data)
 
         cls.temp_file_square = "Square.json"
-        data_square =(
+        data_square = (
                 '[{"id": 3, "size": 2, "x": 1, "y": 1}, '
                 '{"id": 4, "size": 4, "x": 2, "y": 2}]')
         with open(cls.temp_file_square, 'w', encoding='utf-8') as file_square:
