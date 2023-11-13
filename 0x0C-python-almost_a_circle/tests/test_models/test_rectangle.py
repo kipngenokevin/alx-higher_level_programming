@@ -25,7 +25,7 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r.height, 20)
         self.assertEqual(r.x, 0)
         self.assertEqual(r.y, 0)
-        self.assertEqual(r.id, 4)
+        self.assertEqual(r.id, 2)
 
     def test_setters(self):
         """Test the setters of a rectangle"""

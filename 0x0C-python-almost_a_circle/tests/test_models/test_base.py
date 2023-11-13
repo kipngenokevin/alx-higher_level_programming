@@ -2,6 +2,9 @@
 """This is a unittest module to test the  base class"""
 import unittest
 from models.base import Base
+from models.rectangle import Rectangle
+import os
+import textwrap
 
 
 class TestBaseClass(unittest.TestCase):
@@ -31,3 +34,35 @@ class TestBaseClass(unittest.TestCase):
         b2 = Base()
         self.assertEqual(b1.id, 1)
         self.assertEqual(b2.id, 2)
+
+    def test_to_json_string_empty_list(self):
+        """Test the json to string method with an empty list"""
+        result = Base.to_json_string([])
+        self.assertEqual(result, "[]")
+
+    def test_to_json_string_none(self):
+        """Test the json to string function with a None Value"""
+        result = Base.to_json_string(None)
+        self.assertEqual(result, "[]")
+
+    def test_to_json_string_non_empty_list(self):
+        """Test the json to string with a list with dictionaries"""
+        data = [{"id": 1, "name": "John"}, {"id": 2, "name": "Jane"}]
+        result = Base.to_json_string(data)
+        expect = '[{"id": 1, "name": "John"}, {"id": 2, "name": "Jane"}]'
+        self.assertEqual(result, expect)
+
+    def test_save_to_file(self):
+        # Create instances
+        r1 = Rectangle(3, 4)
+        r2 = Rectangle(5, 6)
+
+        Rectangle.save_to_file([r1, r2])
+        self.assertTrue(os.path.exists("Rectangle.json"))
+
+        with open("Rectangle.json", 'r') as file:
+            content = file.read()
+            expect = (
+                    '[{"id": 1, "width": 3, "height": 4, "x": 0, "y": 0}, '
+                    '{"id": 2, "width": 5, "height": 6, "x": 0, "y": 0}]')
+            self.assertEqual(content.strip(), expect)

@@ -4,6 +4,7 @@ class will be the “base” of all other classes in this project.
 The goal of it is to manage id attribute in all your future classes
 to avoid duplicating the same code (by extension, same bugs)
 """
+import json
 
 
 class Base:
@@ -25,3 +26,29 @@ class Base:
         else:
             Base.__nb_objects += 1
             self.id = Base.__nb_objects
+
+    @staticmethod
+    def to_json_string(list_dictionaries):
+        """returns the JSON string representation
+        of list_dictionaries:
+        list_dictionaries is a list of dictionaries
+        If list_dictionaries is None or empty
+        return the string: "[]"
+        return the JSON string representation of list_dictionaries
+        """
+        if list_dictionaries is None or len(list_dictionaries) == 0:
+            return "[]"
+        else:
+            return json.dumps(list_dictionaries)
+
+    @classmethod
+    def save_to_file(cls, list_objs):
+        """Writes the JSON string representation of list_objs to a file"""
+        if list_objs is None:
+            list_objs = []
+        filename = cls.__name__ + ".json"
+        json_list = [obj.to_dictionary() for obj in list_objs]
+        json_string = cls.to_json_string(json_list)
+
+        with open(filename, 'w') as file:
+            file.write(json_string)
