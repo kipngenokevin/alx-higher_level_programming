@@ -52,3 +52,21 @@ class Base:
 
         with open(filename, 'w') as file:
             file.write(json_string)
+
+    @staticmethod
+    def from_json_string(json_string):
+        """returns the list of the JSON string representation json_string"""
+        if not json_string:
+            return []
+        return json.loads(json_string)
+
+    @classmethod
+    def create(cls, **dictionary):
+        """Returns an instance with all attributes already set."""
+        if "size" in dictionary:
+            dummy_instance = cls(1)
+        else:
+            dummy_instance = cls(1, 1)
+
+        dummy_instance.update(**dictionary)
+        return dummy_instance

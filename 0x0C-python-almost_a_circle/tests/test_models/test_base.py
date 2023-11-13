@@ -3,6 +3,7 @@
 import unittest
 from models.base import Base
 from models.rectangle import Rectangle
+from models.square import Square
 import os
 import textwrap
 
@@ -53,6 +54,7 @@ class TestBaseClass(unittest.TestCase):
         self.assertEqual(result, expect)
 
     def test_save_to_file(self):
+        """Test the save_to_file class method"""
         # Create instances
         r1 = Rectangle(3, 4)
         r2 = Rectangle(5, 6)
@@ -66,3 +68,46 @@ class TestBaseClass(unittest.TestCase):
                     '[{"id": 1, "width": 3, "height": 4, "x": 0, "y": 0}, '
                     '{"id": 2, "width": 5, "height": 6, "x": 0, "y": 0}]')
             self.assertEqual(content.strip(), expect)
+
+    def test_from_json_string_empty(self):
+        """Test from_json_string with an empty string."""
+        result = Base.from_json_string('')
+        self.assertEqual(result, [])
+
+    def test_from_json_string_none(self):
+        """Test from_json_string with None."""
+        result = Base.from_json_string(None)
+        self.assertEqual(result, [])
+
+    def test_from_json_string_valid(self):
+        """Test from_json_string with a valid JSON string."""
+        string = '[{"id": 1, "width": 3, "height": 4, "x": 0, "y": 0}]'
+        result = Base.from_json_string(string)
+        expected = [{"id": 1, "width": 3, "height": 4, "x": 0, "y": 0}]
+        self.assertEqual(result, expected)
+
+    def test_create_rectangle(self):
+        """Test create with a rectangle instance"""
+        rectangle_dict = {'width': 4, 'height': 6, 'id': 1}
+        rectangle_instance = Rectangle.create(**rectangle_dict)
+
+        self.assertIsInstance(rectangle_instance, Rectangle)
+        self.assertEqual(rectangle_instance.width, 4)
+        self.assertEqual(rectangle_instance.height, 6)
+        self.assertEqual(rectangle_instance.id, 1)
+
+    def test_create_square(self):
+        """Test create with a square instance"""
+        square_dict = {'size': 3, 'id': 2}
+        square_instance = Square.create(**square_dict)
+
+        self.assertIsInstance(square_instance, Square)
+        self.assertEqual(square_instance.size, 3)
+        self.assertEqual(square_instance.id, 2)
+
+    def test_create_with_invalid_keys(self):
+        """Test create with invalid keys"""
+        invalid_dict = {'invalid_key': 42}
+
+        with self.assertRaises(TypeError):
+            Base.create(**invalid_dict)
