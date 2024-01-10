@@ -4,6 +4,7 @@
 if (process.argv.length <= 3) {
   console.log(0);
 } else {
-  const list = process.argv.sort();
-  console.log(list.reverse()[1]);
+  const integers = process.argv.slice(2).map(Number);
+  const sortedIntegers = integers.sort((a, b) => b - a);
+  console.log(sortedIntegers[1]);
 }
