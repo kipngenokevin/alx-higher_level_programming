@@ -16,7 +16,7 @@ The biggest difference is: no more SQL queries! Indeed, the purpose of an ORM is
 
 Without ORM:
 
-`
+```
 conn = MySQLdb.connect(host="localhost", port=3306, user="root", passwd="root", db="my_db", charset="utf8")
 cur = conn.cursor()
 cur.execute("SELECT * FROM states ORDER BY id ASC") # HERE I have to know SQL to grab all states in my database
@@ -25,11 +25,11 @@ for row in query_rows:
     print(row)
 cur.close()
 conn.close()
-`
+```
 
 With an ORM:
 
-`
+```
 engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'.format("root", "root", "my_db"), pool_pre_ping=True)
 Base.metadata.create_all(engine)
 
@@ -37,7 +37,7 @@ session = Session(engine)
 for state in session.query(State).order_by(State.id).all(): # HERE: no SQL query, only objects!
     print("{}: {}".format(state.id, state.name))
 session.close()
-`
+```
 
 Do you see the difference? Cool, right?
 
@@ -65,16 +65,16 @@ Indeed, all of them have the same type of syntax, but not always. Please read tu
 ### Install and activate venv
 To create a Python Virtual Environment, allowing you to install specific dependencies for this python project, we will install venv:
 
-`
+```
 $ sudo apt-get install python3.8-venv
 $ python3 -m venv venv
 $ source venv/bin/activate
-`
+```
 
 ### Install `MySQLdb` module version `2.0.x`
 For installing `MySQLdb`, you need to have `MySQL` installed.
 
-`
+```
 $ sudo apt-get install python3-dev
 $ sudo apt-get install libmysqlclient-dev
 $ sudo apt-get install zlib1g-dev
@@ -84,25 +84,25 @@ $ python3
 >>> import MySQLdb
 >>> MySQLdb.version_info 
 (2, 0, 3, 'final', 0)
-`
+```
 
 ### Install `SQLAlchemy` module version `1.4.x`
 
-`
+```
 $ sudo pip3 install SQLAlchemy
 ...
 $ python3
 >>> import sqlalchemy
 >>> sqlalchemy.__version__ 
 '1.4.22'
-`
+```
 
 Also, you can have this warning message:
 
-`
+```
 /usr/local/lib/python3.4/dist-packages/sqlalchemy/engine/default.py:552: Warning: (1681, "'@@SESSION.GTID_EXECUTED' is deprecated and will be re
 moved in a future release.")                                                                                                                    
   cursor.execute(statement, parameters)
-`
+```
 
 You can ignore it.
